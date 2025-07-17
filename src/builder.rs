@@ -7,6 +7,15 @@ use na::{
 
 use crate::{powers::monomial_exponents, rbf::RBFInterpolator};
 
+/// You must provide the number of monomials terms
+/// for your choice of polynomial degree and points
+/// dimension.
+///
+/// i.e. A degree 1 polynomial in two variables will
+/// incur the following monomials: 1, x, y
+/// Degree 2 will incur: 1, x, y, xy, x^2, y^2
+///
+/// In general, monomials = (degree + dimension) choose (degree)
 pub enum RBFInterpolatorBuilder<
     const DEGREE: usize,
     const MONOMIALS: usize,

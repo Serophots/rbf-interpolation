@@ -1,8 +1,14 @@
 [package]
 name = "rbf-interpolation"
+description = "Radial basis function interpolation in Rust using nalgebra"
 version = "0.1.0"
 edition = "2024"
 authors = ["Serophots"]
+repository = "https://github.com/Serophots/rbf-interpolation"
+keywords = ["interpolation", "linear", "algebra", "matrix", "vector", "math"]
+categories = ["science", "mathematics"]
+license-file = "LICENSE"
+readme = "README.md"
 
 [dependencies]
 nalgebra = "0.33"
