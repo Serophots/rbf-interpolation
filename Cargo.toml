@@ -6,8 +6,6 @@ authors = ["Serophots"]
 
 [dependencies]
 nalgebra = "0.33"
-num = "0.4"
-simba = "0.9"
 
 [dev-dependencies]
 gnuplot = "0.0.46"
