@@ -11,7 +11,7 @@ pub(crate) fn monomial_exponents<const VARIABLES: usize, const DEGREE: usize>()
     ) {
         if var + 1 == n {
             cur[var] = remain as i32;
-            out.push(cur.clone());
+            out.push(*cur);
         } else {
             for i in 0..=remain {
                 cur[var] = i as i32;

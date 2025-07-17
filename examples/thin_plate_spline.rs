@@ -13,7 +13,7 @@ fn main() {
     let values = SVector::<f64, 5>::new(2.0, 6.0, 4.0, 4.0, 5.0);
 
     let interpolant = RBFInterpolatorBuilder::<1, 3, 5, 2>::ThinPlateSpline
-        .build(points.clone(), values.clone())
+        .build(points, values)
         .unwrap();
 
     //15x15 with 0.1 resolution

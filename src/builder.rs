@@ -1,4 +1,4 @@
-use std::{iter::repeat, usize};
+use std::{iter::repeat};
 
 use na::{
     ArrayStorage, Const, DefaultAllocator, DimMin, DimName, Matrix, SquareMatrix, Storage,
