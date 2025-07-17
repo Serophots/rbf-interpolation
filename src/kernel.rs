@@ -1,11 +1,13 @@
+use na::{RealField, Scalar};
+
 use crate::builder::RBFInterpolatorBuilder;
 
-type F = f64;
-
-impl<const DEGREE: usize, const MONOMIALS: usize, const N: usize, const D: usize>
-    RBFInterpolatorBuilder<DEGREE, MONOMIALS, N, D>
+impl<T, const DEGREE: usize, const MONOMIALS: usize, const N: usize, const D: usize>
+    RBFInterpolatorBuilder<T, DEGREE, MONOMIALS, N, D>
+where
+    T: Scalar + RealField + Copy,
 {
-    pub(crate) fn kernel(&self, r: F) -> F {
+    pub(crate) fn kernel(&self, r: T) -> T {
         match self {
             RBFInterpolatorBuilder::Linear => -r,
             RBFInterpolatorBuilder::ThinPlateSpline => {
@@ -18,16 +20,16 @@ impl<const DEGREE: usize, const MONOMIALS: usize, const N: usize, const D: usize
             RBFInterpolatorBuilder::Cubic => r.powi(3),
             RBFInterpolatorBuilder::Quintic => -r.powi(5),
             RBFInterpolatorBuilder::Multiquadratic { epsilon } => {
-                -((r * epsilon).powi(2) + na::one::<F>()).sqrt()
-            },
+                -((r * *epsilon).powi(2) + na::one::<T>()).sqrt()
+            }
             RBFInterpolatorBuilder::InverseMultiquadratic { epsilon, .. } => {
-                na::one::<F>() / ((r * epsilon).powi(2) + na::one::<F>()).sqrt()
+                na::one::<T>() / ((r * *epsilon).powi(2) + na::one::<T>()).sqrt()
             }
             RBFInterpolatorBuilder::InverseQuadratic { epsilon } => {
-                na::one::<F>() / ((r * epsilon).powi(2) + na::one::<F>())
-            },
+                na::one::<T>() / ((r * *epsilon).powi(2) + na::one::<T>())
+            }
             RBFInterpolatorBuilder::Gaussian { epsilon, .. } => {
-                na::one::<F>() / ((r * epsilon).powi(2) + na::one::<F>()).exp()
+                na::one::<T>() / ((r * *epsilon).powi(2) + na::one::<T>()).exp()
             }
         }
     }

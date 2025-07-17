@@ -17,7 +17,7 @@ fn main() {
     //Construct the interpolant
     // Must provide the number of monomials terms for your choice of polynomial degree and points dimension
     // i.e.
-    let interpolant = RBFInterpolatorBuilder::<1, 3, 5, 2>::ThinPlateSpline
+    let interpolant = RBFInterpolatorBuilder::<f64, 1, 3, 5, 2>::ThinPlateSpline
         .build(points, values)
         .unwrap();
 

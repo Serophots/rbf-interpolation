@@ -12,12 +12,12 @@ fn main() {
     ]);
     let values = SVector::<f64, 5>::new(2.0, 6.0, 4.0, 4.0, 5.0);
 
-    let interpolant = RBFInterpolatorBuilder::<1, 3, 5, 2>::ThinPlateSpline
+    let interpolant = RBFInterpolatorBuilder::<f64, 1, 3, 5, 2>::ThinPlateSpline
         .build(points, values)
         .unwrap();
 
     //15x15 with 0.1 resolution
-    let mut surface = Vec::with_capacity(150*150);
+    let mut surface = Vec::with_capacity(150 * 150);
     for i in 0..150 {
         for j in 0..150 {
             surface.push(interpolant.interpolate(&Vector2::new(i as f64 / 10.0, j as f64 / 10.0)));
@@ -30,7 +30,12 @@ fn main() {
     fg.axes3d()
         .set_title("Thin plate spline, 1 degree polynomial", &[])
         .surface(surface, 150, 150, Some((0.0, 0.0, 15.0, 15.0)), &[])
-        .points(points.next().unwrap(), points.next().unwrap(), values.iter(), &[])
+        .points(
+            points.next().unwrap(),
+            points.next().unwrap(),
+            values.iter(),
+            &[],
+        )
         .set_x_label("X", &[])
         .set_y_label("Y", &[])
         .set_z_label("Z", &[])

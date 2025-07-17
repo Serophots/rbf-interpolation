@@ -19,7 +19,7 @@ mod tests {
         ]);
         let values = SVector::<f64, 5>::new(2.0, 6.0, 4.0, 4.0, 5.0);
 
-        let interpolant = RBFInterpolatorBuilder::<1, 3, 5, 2>::ThinPlateSpline
+        let interpolant = RBFInterpolatorBuilder::<f64, 1, 3, 5, 2>::ThinPlateSpline
             .build(points, values)
             .unwrap();
 

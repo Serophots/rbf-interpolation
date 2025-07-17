@@ -12,6 +12,7 @@ readme = "README.md"
 
 [dependencies]
 nalgebra = "0.33"
+num-traits = "0.2.19"
 
 [dev-dependencies]
 gnuplot = "0.0.46"
